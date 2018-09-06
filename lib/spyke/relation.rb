@@ -6,7 +6,7 @@ module Spyke
 
     attr_reader :klass
     attr_accessor :params
-    delegate :to_ary, :[], :any?, :empty?, :last, :size, :metadata, to: :find_some
+    delegate :to_ary, :[], :last, :metadata, to: :find_some
 
     def initialize(klass, options = {})
       @klass = klass
@@ -64,6 +64,18 @@ module Spyke
     def count
       params[:select] = "count(*) as count"
       find_some.last.count
+    end
+    
+    def size
+      count
+    end
+    
+    def any?
+      count > 0
+    end
+    
+    def empty?
+      count == 0
     end
 
     private
