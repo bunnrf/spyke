@@ -60,6 +60,11 @@ module Spyke
     def uri
       @options[:uri]
     end
+    
+    def count
+      params[:select] = "count(*) as count"
+      find_some.last.count
+    end
 
     private
 
