@@ -62,6 +62,7 @@ module Spyke
     end
     
     def count
+      return @find_some.count unless @find_some.nil?
       params[:select] = "count(*) as count"
       find_some.last.count
     end
